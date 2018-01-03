@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>computed</title>
+    <!-- computed 主要是针对对 data 的属性进行操作，this 的指针默认指向实例 vm -->
+    <script src="../libs/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <p>{{reverseMessage}}</p>
+        
+    </div>
+    <script type="text/javascript">
+        var app = new Vue({
+            el : '#app',
+            data : {
+                message : 'ABC',
+            },
+        // 在 computed 的属性中默认有两个属性，一个是 get，我们称之为 getter，另一个是 set，我们称之为 setter
+            computed : {
+                reverseMessage : {
+                    // return this.message.split('').reverse().join('');
+                    get : function(){
+                        return this.message.split('').reverse().join('');
+                    },
+
+                    // 改变对应的属性就会触发set属性
+                    set : function(){
+                        
+                    }
+                }
+            }
+        })
+
+    </script>
+</body>
+</html>

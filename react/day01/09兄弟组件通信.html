@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>兄弟组件通信---通过共同的父组件通信</title>
+    <script src="../reactjs/react.js"></script>
+    <script src="../reactjs/react-dom.js"></script>
+    <script src="../reactjs/browser.min.js"></script>
+</head>
+<!-- 现在想要在子组件1中拿到子组件2中的值 -->
+<body>
+    <div id="div"></div>
+    <script type="text/babel">
+        var ParentComponent = React.createClass({
+            getInitialState:function(){
+                return {
+                    text:''
+                }
+            },
+            // 拿到组件2的参数了_getVal,再传递给组件1
+            getVal:function(_getVal){
+                // console.log(_getVal)
+
+                this.refs.c1.changeC1(_getVal);
+            },
+            render:function(){
+                return (
+                    <div>
+                        <Children1 ref="c1"/>
+                        <Children2 cc={this.getVal}/>
+                    </div>
+                )
+            }
+        })
+
+        // 子组件1
+        var Children1 = React.createClass({
+            getInitialState:function(){
+                return {
+                    text:''
+                }
+            },
+            changeC1:function(y){
+                console.log(y)
+                this.setState({text:y})
+            },
+            render:function(){
+                return (
+                    <div>
+                        <p >来自组件2的参数---{this.state.text}</p>
+                    </div>
+                )
+            }
+        })
+
+        // 子组件2
+        var Children2 = React.createClass({
+            getInitialState:function(){
+                return {
+                    text:''
+                }
+            },
+            // 要将输入框中的值传给父组件
+            change:function(event){
+                // console.log(event.target.value)
+                this.props.cc(event.target.value)
+            },
+            render:function(){
+                return (
+                    <div>
+                        <p>
+                            <label>子组件2</label><input type="text" onChange={this.change} />
+                        </p>
+                    </div>
+                )
+            }
+        })
+
+        ReactDOM.render(<ParentComponent/>,document.getElementById('div'))
+    </script>
+</body>
+</html>

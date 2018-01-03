@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <script src="../libs/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <p>{{count}}</p>
+        <input type="button" @click="click1" value="原本存在的"/>
+        <component1></component1>
+        <com></com>
+    </div>
+    <script type="text/javascript">
+        var vm = new Vue({
+            el:'#app',
+            data:{
+                count:10
+            },
+            methods:{
+                click1:function(){
+                    console.log(this)
+                    this.$children[0].count += 1
+                    this.$children[1].count -= 10
+                }
+            },
+            components:{
+                'component1':{
+                    template:'<div><input type="button" @click="click" value="自定义组件"/><p>{{count}}</p></div>',
+                    data:function(){
+                        // 组件内部的data是一个函数，并返回一个对象
+                        return {count:100}
+                    },
+                    methods:{
+                        click:function(){
+                            console.log(this)
+                            this.$parent.count+=10
+                        }
+                    }
+
+                },
+                'com':{
+                    template:'<p>{{count}}</p>',
+                    data:function(){
+                        return {count:999}
+                    }
+                }
+            },
+        })
+    </script>
+</body>
+</html>

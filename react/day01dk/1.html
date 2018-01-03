@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../../../../libs/react/react.js"></script>
+    <script src="../../../../libs/react/react-dom.js"></script>
+    <script src="../../../../libs/react/browser.min.js"></script>
+</head>
+<body>
+    <div id="div1"></div>
+    <div id="div2"></div>
+
+    <script type="text/javascript">
+        var html = "<h1>Tom</h1>";
+    </script>
+
+    <script type="text/babel">
+        //虚拟 DOM
+        var name = 'Sam';
+        var style = {color: 'red'};
+        var obj = {name: 'Tom', age: 21}
+        var html1 = 
+        (
+            <p>
+                <span style={style}>name-{obj.name}age-{obj.age}</span>
+            </p>
+        );
+        ReactDOM.render(html1, document.getElementById('div1'));
+
+        var dataset = ['Tom', 'Sam', 'Lily'];
+        var domList = [<li>Tom</li>, <li>Sam</li>, <li>Lily</li>];
+        var html2 = (
+            <div>
+                <ul>
+                    {
+                        // dataset.map(function(arg1, arg2){
+                        //     return <li key={arg2}>{arg1}</li>;
+                        // })
+                        domList
+                    }    
+                </ul>    
+            </div>
+        )
+
+        ReactDOM.render(html2, document.getElementById('div2'));
+    </script>
+</body>
+</html>

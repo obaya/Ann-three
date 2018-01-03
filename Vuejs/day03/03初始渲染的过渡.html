@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <script src="../libs/vue.js"></script>
+    <style type="text/css">
+        .fade-enter{opacity:0;}
+        .fade-enter-active{transition:all 3s;}
+    </style>
+</head>
+<body>
+    <div id="app">
+        <transition name="fade" appear appear-class="fade-enter" appear-active-class="fade-enter-active">
+            <img src="imgs/yellow.jpg" />
+        </transition>
+    </div>
+    <script type="text/javascript">
+        var vm = new Vue({
+            el:'#app'
+        })
+    </script>
+</body>
+</html>

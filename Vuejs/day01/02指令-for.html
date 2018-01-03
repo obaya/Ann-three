@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>指令-for</title>
+    <script src="../libs/vue.js"></script>
+</head>
+<body>
+    <div id="txt">
+        <!-- num -->
+        <div v-for="(value, index) in num">
+            <span v-text="value"></span>
+            <span>{{index}}</span>
+        </div>
+        <!-- 若不需要index可以这样写 -->
+        <div v-for="value in num">
+            <span v-text="value"></span>
+        </div>
+
+
+        <!-- string -->
+        <div v-for="(value, index) in string">
+            <span v-text="value"></span>
+            <span>{{index}}</span>
+        </div>
+        <div v-for="value in string">
+            <span v-text="value"></span>
+        </div>
+
+        <!-- 对象 -->
+        <div v-for="(value, key) in object">
+            <span v-text="key"></span>
+            <span>{{value}}</span>
+        </div>
+        <div v-for="value in object">
+            <span v-text="value"></span>
+        </div>
+
+        <!-- 数组 -->
+        <div v-for="(obj, index) in data">
+            <span v-text="JSON.stringify(obj)"></span>
+            <span>{{index}}</span>
+        </div>    
+        <!--也可以这样写-->
+        <div v-for="obj in data">
+            <span v-text="JSON.stringify(obj)"></span>
+        </div>
+
+    </div>
+    <script type="text/javascript">
+         var vm = new Vue({
+            el : '#txt',
+            data : {
+                num : 3,
+                string : '我是谁',
+                object : {
+                    name : 'yang',
+                    age : 10
+                }
+
+            }
+         })
+    </script>
+</body>
+</html>

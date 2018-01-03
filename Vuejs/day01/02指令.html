@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>指令</title>
+    <!-- 指令（Directive），换句话说就是元素的自定义属性，在 Vue 中是以 v- 为前缀的自定义属性，属性值为对象或 js 表达式 -->
+    <script src="../libs/vue.js"></script>
+</head>
+<body>
+    <div id="txt">
+        <p v-text="a1"></p> <!-- ->v-text：string -->
+        <div v-html="a2"></div> <!-- ->v-html：string -->
+        <p v-show="1==2" v-text="a3"></p> <!-- ->v-show：boolean -->
+        <p v-if='1==2' v-text="a4"></p> <!-- ->v-if：boolean -->
+        <p v-else-if="1!=1" v-text="a5"></p> <!-- ->v-else-if：boolean -->
+        <p v-else v-text="a6"></p> <!-- ->v-else：不需要表达式 -->
+        <button v-on:click="a7">点我</button> <!-- ->v-on：function       可缩写为： @click-->
+        <div><img v-bind:src="a8" /></div> <!-- ->v-bind属性指令：object    可缩写为：:src    -->
+        <input type="text" v-model="a9"/> <!-- ->v-model：表单元素的值 -->
+        <p v-pre>v-pre是不编译的{{a1}}</p> <!-- ->v-pre：不需要表达式 -->
+        <p v-cloak>{{a10}}</p> <!-- ->v-cloak：不需要表达式 -->
+        <p v-once>{{a11}}</p> <!-- ->v-once：不需要表达式 -->
+        <p v-once>{{a11}}</p> 
+    </div>
+    <script type="text/javascript">
+        var vm = new Vue({
+            el : '#txt',
+            data : {
+                a1 : '在这里写什么p显示什么',
+                a2 : '<h3>p标签中不能放h标签</h3>',
+                a3 : '看见我表示v-code值为true，看不见我只是我隐藏了，但是还存在',
+                a4 : '看见我表示v-if的值为true，看不见我表示我直接不存在',
+                a5 : '看见我表示v-else-if的值为true',
+                a6 : '跟着v-else不需要表达式，看见我表示v-if，v-else-if的值都为false',
+                a7 : function(){
+                    console.log(this)//---------->this指向windows
+                },
+                a8 : '../img/6.jpg',
+                a9 : 'v-model带大的',
+                a10 : 'v-cloak是什么',
+                a11 : 'v-once是什么：内容只解释一次，当改变 mess 时不会再次映射过来,不是说改变的话就不映射了吗'
+                
+            }
+        })
+    </script>
+    (function(i){
+
+    })(i)
+    (function(i){})(i)
+</body>
+</html>

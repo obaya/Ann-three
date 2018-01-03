@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <script src="libs/vue.js"></script>
+</head>
+<body>
+    <!-- 组件 -->
+    <div id="app">
+        <component></component>   
+        <component1 title="组件属性" :prop="mess" >
+        </component1>
+        <a :href="to" :target="target"><button>{{tobaidu}}</button></a>   
+        <ul >
+            <li  v-ziling v-for="n in 100" :no="n">{{n}}</li>
+        </ul>
+    </div>
+    <script type="text/javascript">
+        Vue.component('component',{
+            template:'<h1>全局组件</h1>'
+        });
+        var vm = new Vue({
+            el:'#app',
+            data:{
+                mess:'动态属性',
+                to:'http://www.baidu.com',
+                tobaidu:'百度一下，你就知道',
+                target:'_blank'
+
+            },
+            props:['no'],
+            components:{
+                'component1':{
+                    template:'<h2 @click="count">{{title+prop}}</h2>',
+                    props:['title','prop'],
+                    data(){
+                        return {
+                            add:"加",
+                        }
+                    },
+                    methods:{
+                        count(){
+                            if(!this.jia){
+                                Vue.set(this.jia,"shuzi",1)
+                                
+                            }else{
+                                this.jia++
+                            }
+                        }
+                    }
+
+                }
+            },
+            directives:{
+                ziling:function(e){
+                    e.style.color=randomColor();
+                    e.style.float='left';
+                    e.style.listStyle='none'
+                }
+            }
+        })
+    function randomColor(){
+        // 得到rgb随机颜色
+        var r = parseInt(Math.random()*256);
+        var g = parseInt(Math.random()*256);
+        var b = parseInt(Math.random()*256);
+
+        return 'rgb(' + r + ',' + g + ',' + b + ')';
+    }
+    </script>
+</body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>index</title>
+    <script src="../libs/jquery-2.1.1.min.js"></script>
+</head>
+<body>
+    <h2>student</h2>
+    <script type="text/javascript">
+        $(function(){
+            var token = localStorage.getItem('token');//得到login页面保存的token
+            // $.get('http://localhost:666/students',{token:token},function(res){
+            //     // 应该是只有登录的人才能拿到信息
+            //     console.log(res);
+            // })
+
+            // 将token放在请求头中请求出去，
+            $.ajax({
+                url:'http://localhost:666/students',
+                type: 'get',
+                beforeSend: function(request) {
+                    request.setRequestHeader("Authorization", token);
+                },
+                success:function(res){
+                    console.log(res);
+                    console.log(token);
+                }
+            })
+        })
+    </script>
+</body>
+</html>

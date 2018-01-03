@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>自定义日期控件---没有自己做出来</title>
+    <script src="../libs/vue.js"></script>
+    <script src="../libs/jquery-3.2.1.min.js"></script>
+</head>
+<body>
+    <div id="app">
+        <!--直接在 jQuery 环境下使用 datepicker 插件-->
+        <input type="text" id="datepicker"  data-date-format="yyyy-mm-dd"/>
+        <!--使用 Vue 自定义指令 v-datepicker-->
+        <input type="text" v-datepicker data-date-format="yyyy-mm-dd" />
+
+        <input type="button"  value="保存" @click="save"/>
+    </div>
+    <script type="text/javascript">
+        //在没有使用 Vue 前，datepicker 插件在 jQuery 的环境下是这样使用
+        // $('#datepicker').datepicker();
+        
+        // 使用自定义指令v-datepicker
+        Vue.directive('datepicker',function(element){
+
+        })
+
+        var vm = new Vue({
+            el:'#app',
+
+        })
+
+    </script>
+</body>
+</html>

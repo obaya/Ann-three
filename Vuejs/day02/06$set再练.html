@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <script src="../libs/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <input type="button" @click="click" value="click me"/>
+        <p>{{getdata.age}}</p>
+    </div>
+    <script type="text/javascript">
+        var vm = new Vue({
+            el:'#app',
+            data:{
+                getdata:{},
+            },
+            methods:{
+                click:function(){
+                    // this.getdata.age = 18;
+                    this.$set(this.getdata,"age",20)
+                }
+            }
+        })
+    </script>
+</body>
+</html>

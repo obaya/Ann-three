@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <script src="../reactjs/react.js"></script>
+    <script src="../reactjs/react-dom.js"></script>
+    <script src="../reactjs/browser.min.js"></script>
+</head>
+<body>
+    <div id="div"></div>
+    <script type="text/babel">
+        var Component1 = React.createClass({
+            getDefaultProps:function(){
+                return {
+                    name:'yang',
+                    age:10
+                }
+                
+            },
+            render: function(){
+                return (
+                    <div>
+                        <h1>{this.props.name}</h1>
+                        <h1>Sam</h1>
+                    </div>
+                )
+            }
+        })
+        ReactDOM.render(<Component1/>,document.getElementById('div'))
+    </script>
+
+</body>
+</html>

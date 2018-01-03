@@ -1,0 +1,57 @@
+前端web：
+
+    login：
+     1.登录界面（html）
+     2.$.post将/login，username，password请求给后端，并有一个回调函数用来   出来返回的数据res
+     3.如果后端返回过来的res.status为true，则跳转至index；同时拿到token将其   存起来localStorage.setItem('token',res.data)
+    
+    index：
+     1.将token提取出来var token=localStorage.getItem('token')
+     2.$.ajax将/students请求给后端，并将token设置在请求头中
+    	beforeSend: function(request) {
+                 request.setRequestHeader("Authorization", token);}
+
+
+后端api：
+
+    apiResult：设置返回的数据function(_status,_data,_mess)
+    
+    server：
+     1.加载express，apiResult，jsonwebtoken模块
+     2.允许跨域请求要设置的app.all(){}
+     3.app.post('/login',function(){
+    	>拿到login.html传过来的数据
+    	>从数据库获取数据，设置token
+    	 var token = jwt.sign(user,'secret',{'expiresIn':1000});
+    	>将token返回给前端
+    	 res.send(apiResult(true,token));	
+    })
+     4.app.get('/students',function(){
+    	>拿到index.html传过来的token
+    	 var token = req.headers.authorization;
+    	>验证token
+    	 jwt.verify(token,'secret',function(error,result){
+             if(error){
+                res.send(apiResult(false,[],'请求信息有误'));
+             }else{
+    
+                // 连接数据库，核查相关信息，再返回给前端
+                var dataset = [{name:'yang',age:17}]
+                res.send(apiResult(true,dataset));
+             }
+        })
+    })
+     5.开启服务器
+       app.listen(666,function(){
+    	console.log('成功开启服务器');
+       })
+    
+
+
+
+
+
+
+
+
+

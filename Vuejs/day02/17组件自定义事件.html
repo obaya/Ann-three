@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <script src="../libs/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <p>{{counts}}</p>
+        <aa v-on:wo="ni"></aa>
+    </div>
+    <script type="text/javascript">
+        var vm = new Vue({
+            el:'#app',
+            data:{
+                counts : 33
+            },
+            methods : {
+                ni:function(){//3
+                    this.counts+=3
+                }
+            },
+            components : {
+                'aa':{
+                    template:'<div><input type="button" @click="ta" value="jia" /><p>{{count}}</p></div>',//1
+                    data:function(){
+                        return {
+                            count :24
+                        }
+                    },
+                    methods:{
+                        ta:function(){
+                            this.count++
+                            this.$emit('wo');//2
+                        }
+                    }
+                }
+            }
+        })
+    </script>
+</body>
+</html>

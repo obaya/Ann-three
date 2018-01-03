@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <script src="../libs/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <input type="text" v-global />
+        <p v-global></p>
+    </div>
+    <script type="text/javascript">
+        // 先祖册一个自定义属性
+        Vue.directive('global',function(element){
+            element.value = "SHANGHAI";
+            element.innerHTML = "BEIJING";
+        })
+
+        var vm = new Vue({
+            el : '#app',
+            data : {
+                mess : 'xxxxx'
+            }
+        })
+    </script>
+</body>
+</html>

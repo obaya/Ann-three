@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <script src="../reactjs/react.js"></script>
+    <script src="../reactjs/react-dom.js"></script>
+    <script src="../reactjs/browser.min.js"></script>
+</head>
+<body>
+    <div id="div"></div>
+    <div id="div1"></div>
+    <script type="text/babel">
+        var style={fontSize:'30px',color:'#f00'}
+        var obj = {name:"ann",age:"10"}
+        // 将标签渲染到指定容器
+        ReactDOM.render(<h1 style={style} >杨珊 {obj.name + obj.age}</h1>,document.getElementById('div'))
+
+        var arr = ['kent','nick','sam'];
+        ReactDOM.render(<ul>
+                {
+                    arr.map(function(item1,item2){//item1是数组中的项。item2是索引
+                        console.log(item2)
+                        return <li key={item2}>{item1}</li>
+                    })
+                }
+            </ul>,document.getElementById('div1'))
+    </script>
+</body>
+</html>

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <script src="../libs/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <p v-global>{{haha}}</p>
+    </div>
+    <script type="text/javascript">
+        Vue.directive('global',function(element){
+            element.style.color='red'
+        })
+        var vm = new Vue({
+            el:"#app",
+            data:{
+                haha:"怎么会酱紫"
+            }
+        })
+    </script>
+</body>
+</html>

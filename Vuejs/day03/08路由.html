@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <script src="../libs/vue.js"></script>
+    <script src="../libs/vue-router.js"></script>
+
+</head>
+<body>
+    <div id="app">
+        <router-link to="/login/Ann/mima">login</router-link>
+        <router-link to="/register">register</router-link>
+        <router-link to="/floor">floor</router-link>
+        <router-link to="/floor/floor201">floor201</router-link>
+        <router-link to="/floor/floor202">floor201</router-link>
+        <input type="button" value="跳转" @click="floor" />
+        <router-view></router-view>
+    </div>
+    <script type="text/javascript">
+        var router = new VueRouter({
+            routes:[
+                {
+                path:'/login/:name/:password',
+                component:{template:'<h3>name:{{$route.params.name}} password:{{$route.params.password}}</h3>'}
+                },
+                {
+                path:'/register',
+                name:'register',
+                component:{template:'<h3>register</h3>'}
+                },
+
+
+                {
+                    path:'/floor',
+                    name:'floor',
+                    component:{template:'<div><h3>floor</h3><router-view></router-view></div>'},
+                    children:[
+                        {path:'floor201',
+                        component:{template:'<h4>floor201</h4>'}},
+                        {path:'floor202',
+                        component:{template:'<h4>floor202</h4>'}},
+                    ]
+                },
+
+            ]
+        })
+
+        var vm = new Vue({
+            el:'#app',
+            router:router,
+            methods:{
+                floor:function(){
+                    // 编程式导航的三种方法
+                    // this.$router.push('/floor')
+                    // this.$router.replace('/register') 
+                    this.$router.push({name:'register'}) 
+                }
+            }
+
+        })
+    </script>
+</body>
+</html>

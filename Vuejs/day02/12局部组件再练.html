@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <script src="../libs/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <private></private>
+    </div>
+    <script type="text/javascript">
+        var vm = new Vue({
+            el:'#app',
+            components:{
+                'private':{
+                    template:'<div><p>局部组件</p><ul><li>这里可以写很多</li></ul></div>'
+                }
+            }
+        })
+    </script>
+</body>
+</html>

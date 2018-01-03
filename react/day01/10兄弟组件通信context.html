@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>兄弟组件通信---通过共同的父组件通信---context</title>
+    <script src="../reactjs/react.js"></script>
+    <script src="../reactjs/react-dom.js"></script>
+    <script src="../reactjs/browser.min.js"></script>
+</head>
+<!-- 现在想要在子组件1中拿到子组件2中的值 -->
+<body>
+    <div id="div"></div>
+    <script type="text/babel">
+        var Parent = React.createClass({
+            getChildContext:function(){
+                return  {
+                    changeChildren1:function(getVal){
+                        this.refs.c1.changeState(getVal)
+                    }.bind(this)
+                }
+            },
+            render:function(){
+                return (
+                    <div>
+                        <Children1 ref="c1"/>
+                        <Children2 ref="c2"/>
+                    </div>
+                )
+            }
+        })
+
+        Parent.childContextTypes = {
+            changeChildren1:React.PropTypes.func.isRequired
+        }
+        // 子1
+        var Children1 = React.createClass({
+            getInitialState:function(){
+                return {
+                    text:''
+                }
+            },
+            changeState:function(_getVal){
+                this.setState({text:_getVal})
+            },
+            render:function(){
+                return (
+                    <div>
+                        <p>来自于2的参数：{this.state.text}</p>
+                    </div>
+                )
+            }
+        })
+
+        // 子2
+        var Children2 = React.createClass({
+            getInitialState:function(){
+                return {
+                    text:''
+                }
+            },
+            change:function(event){
+                this.context.changeChildren1(event.target.value)
+            },
+            render:function(){
+                return (
+                    <div>
+                        <label>组件2：</label><input type="text" onChange={this.change}/>
+                    </div>
+                )
+            }
+        })
+        Children2.contextTypes = {
+            changeChildren1:React.PropTypes.func.isRequired
+        }
+
+        ReactDOM.render(<Parent/>,document.getElementById('div'))
+    </script>
+</body>
+</html>

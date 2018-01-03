@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>login</title>
+    <script src="../api/jquery-3.2.1.js"></script>
+</head>
+<body>
+    <form action="">
+        用户名：<input type="text" id="username" /><br />
+        密码: <input type="password" id="password"><br />
+
+        <input type="button" id="btn" value="登录"/>
+    </form>
+
+    <script type="text/javascript">
+        $(function(){
+            $('#btn').on('click',function(){
+                // 发送请求
+                $.post('http://localhost:666/login',{username:$('#username').val(),password:$('#password').val()},function(res){
+                    console.log(res);
+                    if(res.status){
+                        location.href = 'index.html';
+                        // 拿到token将其存起来
+                        localStorage.setItem('token',res.data);
+                        
+                    }else{
+                        alert(res.message);
+                    }
+                })
+            })
+        })
+    </script>
+</body>
+</html>

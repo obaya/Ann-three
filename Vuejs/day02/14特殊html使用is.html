@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <script src="../libs/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <select is="teshu" name="" id="">
+            <option ></option>
+        </select>
+        <bb></bb>
+        <aa></aa>
+        <cc></cc>
+    </div>
+    <script type="text/javascript">
+        var vm = new Vue({
+            el:'#app',
+            components:{
+                'teshu':{
+                    template:'<select name="" id=""><option>特殊的html结构</option><option>特殊的html结构</option><option>特殊的html结构</option></select>'
+                },
+                'bb':{
+                    template:'<ul><li>1</li><li>2</li></ul>'
+                },
+                'aa':{
+                    template:'<select><option value="">1</option><option value="">2</option></select>'
+                },
+                'cc':{
+                    template:'<table><tr><td>123</td><td>321</td></tr></table>'
+                },
+            }
+        })
+    </script>
+</body>
+</html>

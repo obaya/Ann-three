@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>事件处理器method</title>
+    <!-- 元素可以通过 v-on:事件 || @事件 进行绑定事件，事件中的 this 默认指向实例 vm -->
+    <script src="../libs/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <input type="button" @click="count += 1" value="监听事件" />
+        <span>{{count}}</span>
+    </div>
+
+    <div id="app1">
+        <input type="button" value="确认" @click="counter"/>
+        <p>确认按钮被点击了{{count}}次</p>
+    </div>
+
+    <div id="app2">
+        <input type="button" value="event对象" count="1" @click="eventer" />
+        <span>{{count}}</span>
+    </div>
+
+    <div id="app3">
+        <input type="button" value="事件传参数" @click="parameter(10,$event)"/>
+        <p>{{count}}</p>
+    </div>
+    <script type="text/javascript">
+        var app = new Vue({
+            el : '#app',
+            data : {
+                count : 0
+            }
+        })
+
+        var app1 = new Vue({
+            el : '#app1',
+            data : {
+                count : 0
+            },
+            methods : {
+                counter : function(e){
+                    console.log(e.target)
+                    this.count += 1;
+                }
+            }
+        })
+
+        var app2 = new Vue({
+            el : '#app2',
+            data : {
+                count : 1
+            },
+            methods : {
+                eventer : function(e){
+                    var _count = e.target.getAttribute('count')*1;
+                    this.count += _count ;
+                    e.target.setAttribute('count',this.count)
+                }
+            }
+        })
+
+        var app3 = new Vue({
+            el : '#app3',
+            data : {
+                count : 0,
+            },
+            methods : {
+                parameter : function(n,e){
+                    console.log(n,e)
+                    this.count += n;
+                    e.target.setAttribute('disabled',true)
+                }
+            }
+        })
+    </script>
+</body>
+</html>

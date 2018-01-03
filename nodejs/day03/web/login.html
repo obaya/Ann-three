@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>login</title>
+    <script src="../libs/jquery-2.1.1.min.js"></script>
+</head>
+<body>
+    <form action="">
+        用户名:<input type="text" id="username" /><br />
+        密码:<input type="password" id="password" /><br />
+        <input type="button" value="login" id="btn" />
+        
+        <script type="text/javascript">
+            $(function(){
+                // 使用jquery的post方法
+                $('#btn').on('click',function(e){
+                   
+                    $.post('http://localhost:666/login',{username:$('#username').val(),password:$('#password').val()},function(res){
+                        console.log(res);
+                        // 如果返回过来的status是true，跳转至index
+                        if(res.status){
+                            location.href = 'index.html';
+                            // 保存返回的token
+                            localStorage.setItem('token',res.data);//
+                        }else{
+                            alert(res.message);
+                        }
+                    })
+                })
+            })
+        </script>
+
+    </form>
+</body>
+</html>

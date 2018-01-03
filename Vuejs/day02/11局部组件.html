@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <script src="../libs/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <private-component></private-component>
+        <component1></component1>
+    </div>
+    <script type="text/javascript">
+        var vm = new Vue({
+            el:'#app',
+            components : {
+                'private-component':{
+                    template:'<p>局部组件</p>'
+                },
+                'component1':{
+                    template:'<ol><li></li><li> </li></ol>'
+                }
+            }
+        })
+    </script>
+</body>
+</html>

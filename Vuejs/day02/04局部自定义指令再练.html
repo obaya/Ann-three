@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <script src="../libs/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <p v-private>{{mess}}</p>
+    </div>
+    <script type="text/javascript">
+        var vm = new Vue({
+            el:'#app',
+            data:{
+                mess:"abc",
+            },
+            directives:{
+                private:function(element){
+                    element.style.color='red';
+                }
+            }
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <script src="../libs/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <aa>
+            <p slot="lucy">lucy</p>
+            <p slot="sam">sam</p>
+        </aa>
+    </div>
+    <script type="text/javascript">
+        var vm = new Vue({
+            el:'#app',
+            components : {
+                'aa':{
+                    template:'<div><slot name="sam"></slot><slot name="lucy"></slot><p>kevin</p></div>'
+                }
+            }
+        })
+    </script>
+
+</body>
+</html>

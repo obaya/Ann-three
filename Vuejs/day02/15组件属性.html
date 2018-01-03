@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>组件属性--要先声明后使用props：[属性名]</title>
+    <script src="../libs/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <aa bb="我是bb" cc="我是cc"></aa>
+    </div>
+    <script type="text/javascript">
+        var vm = new Vue({
+            el:'#app',
+            data:{
+                haha:'属性'
+            },
+            components:{
+                'aa':{
+                    template:'<p>{{bb+cc+dd}}</p>',
+                    data:function(){
+                        return {
+                            dd:"我是dd"
+                        }
+                    },
+                    props:['bb','cc']
+                }
+            }
+        })
+    </script>
+</body>
+</html>

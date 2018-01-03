@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <script src="libs/vue.js"></script>
+
+</head>
+<body>
+    <div id="app">
+        <input type="checkbox" id="check" v-model="check"/><label for="check">单选框</label><p>{{check}}</p><br />
+
+        <input type="checkbox" id="check1" value="Check1" v-model="checks" /><label for="check1">Check1</label>
+        <input type="checkbox" id="check2" value="Check2" v-model="checks" /><label for="check2">Check2</label>
+        <input type="checkbox" id="check3" value="Check3" v-model="checks" /><label for="check3">Check3</label><p>{{checks}}</p>
+        
+    </div>
+    
+    <script type="text/javascript">
+        var vm = new Vue({
+            el:'#app',
+            data:{
+                check:false,
+                checks:[]
+            }
+        })  
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>index</title>
+    <script src="../api/jquery-3.2.1.js"></script>
+
+</head>
+<body>
+    <h3>students</h3>
+
+    <script type="text/javascript">
+        $(function(){
+            // 提取token
+            var token = localStorage.getItem('token');
+
+            $.ajax({
+                url:'http://localhost:666/students',
+                type:'get',
+                beforeSend: function(request) {
+                    request.setRequestHeader("Authorization", token);
+                },
+                success:function(res){
+                    console.log(res);
+                    console.log(token);
+                }
+            })
+        })
+
+    </script>
+</body>
+</html>

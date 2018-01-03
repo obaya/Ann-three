@@ -1,0 +1,9 @@
+//1.在bin下面的mongodb目录下打开mongodb命令窗口连接mongod.exe --dbpath D:\Ann\nodejs\test
+1.配置好了，可以直接在命令行输入：net start MongoDB 启动mongoDB
+2.http://127.0.0.1:27017/查看是否连接成功
+3.在需要连接的文件中安装npm install mongodb，写入连接代码，启动node server
+
+
+
+
+

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <script src="../reactjs/react.js"></script>
+    <script src="../reactjs/react-dom.js"></script>
+    <script src="../reactjs/browser.min.js"></script>
+</head>
+<body>
+    <div id="div"></div>
+    <script type="text/babel">
+        var Component = React.createClass({
+            render:function(){
+                return(
+                    <div>
+                        {
+                            React.Children.map(this.props.children,function(childNode){
+                                console.log(childNode)
+                                return <li>{childNode}</li>
+                            })
+                        }
+                    </div>
+                )
+            }
+        })
+        ReactDOM.render(
+            <Component>
+                <p>kent</p>
+                <h3>kevin</h3>
+            </Component>,document.getElementById('div'))
+    </script>
+</body>
+</html>

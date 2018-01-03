@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>子传父</title>
+    <script src="../reactjs/react.js"></script>
+    <script src="../reactjs/react-dom.js"></script>
+    <script src="../reactjs/browser.min.js"></script>
+</head>
+<body>
+    <div id="div"></div>
+    <script type="text/babel">
+        var ParentComponent1 = React.createClass({
+            getInitialState:function(){
+                return {
+                    text:'这里的内容将随着子组件改变'
+                }
+            },
+            changeParent:function(_text){
+                this.setState({text:_text})
+            },
+            render:function(){
+                return (
+                    <div>
+                        <p>{this.state.text}</p>
+                        <ChildrenComponent cc={this.changeParent}/>
+                    </div>
+                )
+            }
+        })
+
+        var ChildrenComponent = React.createClass({
+            getInitialState:function(){
+                return {
+                    text:''
+                }
+            },
+            change:function(e){
+                // 将参数传过去
+                this.props.cc(e.target.value)
+            },
+            render:function(){
+                return (
+                    <div>
+                        <p><label>子组件：</label><input type="text" onChange={this.change}/></p>
+                    </div>
+                )
+            }
+        })
+        ReactDOM.render(<ParentComponent1/>,document.getElementById('div'))
+    </script>
+</body>
+</html>

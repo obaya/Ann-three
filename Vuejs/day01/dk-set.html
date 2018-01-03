@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../libs/vue.js"></script>
+</head>
+<body>
+    <!-- view -->
+    <div id="app1">
+        <p>{{a1}}</p>
+        <input type="button" value="click me" @click="click1(10, 20, $event)">
+        <p>{{message}}</p>
+        <p>{{reverseMessage}}</p>
+        <input type="button" value="next" @click="next">
+        <h1>{{pageindex}}</h1>
+    </div>
+    <div id="app2" style="background:#58bc58;">app2</div>
+    <script>
+        var vm = new Vue({
+            el: '#app1',
+            data: {
+                //Model
+                a1: 123,
+                message: 'ABC',
+                dataset: [],
+                pageindex: 1
+            },
+            methods: {
+                //控制器 => Controller
+                // MVC
+                click1: function(event, n2, _event){
+                    console.log(_event);
+                    this.a1 = 321;
+                },
+                next: function(){
+                    this.page = this.page + 1;
+                }
+            },
+            computed: {
+                // reverseMessage: function(){
+                //     return this.message.split('').reverse().join();
+                // },
+                reverseMessage: {
+                    get: function(){
+                        console.log('get');
+
+                        return this.message.split('').reverse().join();
+                        //取 cookie
+                        // return this.a1 + this.message;
+                    },
+                    set: function(newVal){
+                        console.log('set');
+                        document.getElementById('app2').innerText = newVal;
+                        this.message = newVal;
+                        //写 cookie
+                    }
+                },
+                page: {
+                    get: function(){
+                        //ajax $.get('', function(res){this.dataset = res}.bind(this))
+                        console.log('ajax 翻页');
+                        return this.pageindex;
+                    },
+                    set: function(newVal){
+                        console.log(newVal);
+                        this.pageindex = newVal;
+                    }
+                }
+            }
+        })
+
+    </script>
+</body>
+</html>

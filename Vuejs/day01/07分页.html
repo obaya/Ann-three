@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+
+    <link rel="stylesheet" type="text/css" href="../libs/bootstrap.min.css" />
+    <script src="../libs/vue.js"></script>
+    <script src="../libs/jquery-3.2.1.min.js"></script>
+
+</head>
+<body>
+    <div id="app">
+        <table class="table">
+            <tr v-for="obj in dataSet">
+                <td>{{obj.title}}</td>
+            </tr>
+        </table>
+        <input type="button" value="prev" @click="prev" /><label for="" >{{page}}</label><input type="button" name="" value="next" @click="next">
+    </div>
+    <script type="text/javascript">
+        var vm = new Vue({
+            el : '#app',
+            data : {
+                dataSet:[],
+                pageIndex:1,
+            },
+            methods : {
+                // 点击按钮触发page
+                next:function(){
+                    this.page ++; 
+                },
+                prev:function(){
+                    this.page--;
+                    if(this.pageIndex <=1){
+                        this.pageIndex = 1;
+                    }
+                }
+            },
+            computed : {
+                page : {
+                    get:function(){
+                        // 发送请求数据
+                        $.get('https://cnodejs.org/api/v1/topics',{page:this.pageIndex,limit:15},function(res){
+                            console.log("get")
+                            this.dataSet = res.data;
+                        }.bind(this))
+                        return this.pageIndex;
+                    },
+                    set:function(newVal){
+                            console.log("set")
+                            console.log(newVal)
+                        this.pageIndex = newVal;
+                    }
+                    
+                }       
+            }
+        })
+    </script>
+</body>
+</html>

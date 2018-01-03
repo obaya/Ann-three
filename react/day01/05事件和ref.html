@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <script src="../reactjs/react.js"></script>
+    <script src="../reactjs/react-dom.js"></script>
+    <script src="../reactjs/browser.min.js"></script>
+</head>
+<body>
+    <div id="div"></div>
+    <script type="text/babel">
+        var Component = React.createClass({
+            event:function(){
+                // 点击按钮给对应的ref添加样式
+                this.refs.name.focus()
+                this.refs.changeColor.style.color = '#f00'
+            },
+            render:function(){
+                return (
+                    <div>
+                        <p ref="changeColor">我想变红</p>
+                        <input type="text" name="name" ref="name"/>
+                        <input type="button" value="red" onClick={this.event}/>
+                    </div>
+                )
+            }
+        })
+        ReactDOM.render(<Component/>,document.getElementById('div'))
+    </script>
+</body>
+</html>

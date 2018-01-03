@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>插值</title>
+    <style type="text/css">
+        .sha{width: 100px;height: 100px;background-color: #f00;}
+    </style>
+    <script src="../libs/vue.js"></script>
+</head>
+<body>
+    <div id="txt">
+        <p>{{a1}}</p>
+        <p v-html="a2"></p>
+        <p v-bind:class="a4"></p>
+        <p>{{a5? 'ok' : 'no'}}</p>
+        <p>{{a1.split('').reverse().join('')}}</p>
+    </div>
+
+
+    <div id="ys">
+        <p>{{y1}}</p>
+        <p>{{y2?y3:y4}}</p>
+        <p v-text="y4"></p>
+
+    </div>
+
+    <script type="text/javascript">
+        var vm = new Vue({
+            el:"#txt",
+            data:{
+                a1:'你是我的小呀小苹果',//--->文本
+                a2:'<h5>html标签</h5>',//--->html
+                a4:'sha',//--->属性
+                a5:'true'//--->js 表达式
+            }
+        });
+
+        var vm = new Vue({
+            el:"#ys",
+            data:{
+                y1:"woshi ys",
+                y2:false,
+                y3:"y2对就是我",
+                y4:"y2错就是我",
+            }
+        })
+
+    </script>
+</body>
+</html>

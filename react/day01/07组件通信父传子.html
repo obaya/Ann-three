@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>父传子</title>
+    <script src="../reactjs/react.js"></script>
+    <script src="../reactjs/react-dom.js"></script>
+    <script src="../reactjs/browser.min.js"></script>
+</head>
+<body>
+    <div id="div"></div>
+    <script type="text/babel">
+        var ParentComponent1 = React.createClass({
+            getInitialState:function(){
+                return {
+                    text:''
+                } 
+            },
+            change:function(e){
+                this.setState({text:e.target.value}) 
+                // 调用子组件的时间方法并传递参数过去
+                this.refs.c1.changeChildren(e.target.value)
+            },
+            render:function(){
+                return (
+                    <div>
+                        <p><label>父</label><input type="text" onChange={this.change}/></p>
+                        <p>{this.state.text}</p>
+                        <ChildrenComponent ref="c1" text={this.state.text}/>
+                    </div>
+                )
+            }
+        })
+
+        var ChildrenComponent = React.createClass({
+            getInitialState:function(){
+                return {
+                    text:''
+                }
+            },
+            // 定义事件给父调用时拿到父传过来的参数e
+            changeChildren:function(e){
+                console.log(e)
+                this.setState({text:e})
+            },
+            render:function(){
+                return (
+                    <div>
+                        <p>zi:{this.state.text}</p>
+                        <p>来自父组件的直接传参:{this.props.text}</p>
+                    </div>
+                )
+            }
+        })
+        ReactDOM.render(<ParentComponent1/>,document.getElementById('div'))
+    </script>
+</body>
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <script src="../libs/vue.js"></script>
+    <style type="text/css" media="screen">
+        .fade-enter{opacity: 0;}
+        .fade-enter-active{transition: all .5s;}
+
+        .fade-leave-active{opacity: 0; transition: all .5s;}
+    </style>
+</head>
+<body>
+    <div id="app" >
+        <input type="button" value="changelight" @click="changelight"/><br />
+        <transition name="fade" mode="out-in">
+            <p :is="show" :title="show"></p>
+        </transition>
+    </div>
+
+    <script type="text/javascript">
+        var vm = new Vue({
+            el:'#app',
+            data:{
+                show:'red',
+
+            },
+            methods:{
+                changelight:function(){
+                    this.show = this.show == 'red' ? 'green' : this.show == 'green' ? 'yellow' : 'red';
+                }
+            },
+            components:{
+                red:{
+                    template:'<img src="imgs/red.jpg"/>'
+                },
+                green:{
+                    template:'<img src="imgs/green.jpg"/>'
+                },
+                yellow:{
+                    template:'<img src="imgs/yellow.jpg"/>'
+                }
+            }
+        })
+    </script>
+</body>
+</html>

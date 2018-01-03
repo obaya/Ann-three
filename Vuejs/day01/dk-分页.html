@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>cnodejs</title>
+    <link rel="stylesheet" type="text/css" href="../libs/bootstrap.min.css" />
+    <script src="../libs/vue.js"></script>
+    <script src="../libs/jquery-3.2.1.min.js"></script>
+</head>
+<body>
+    <div id="app">
+        <table class="table">
+            <tr v-for="(obj, index) in dataset">
+                <td>{{obj.title}}</td>
+            </tr>
+        </table>
+        <label>{{page}}</label><input type="button" value="next" @click="next">
+    </div>
+
+    <script>
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                dataset: [],
+                pageindex: 1,
+                a: 1
+            },
+            methods: {
+                next: function(){
+                    this.page += 1;
+                }
+            },
+            computed: {
+                page: {
+                    get: function(){
+                        $.get(' https://cnodejs.org/api/v1/topics', {page: this.pageindex, limit: 10}, function(res){
+                            // console.log(res);
+                            vm.dataset = res.data;
+                        })                            
+                        return this.pageindex;
+                    },
+                    set: function(newVal){
+                        this.pageindex = newVal;
+                    }
+                }
+            },
+            watch: {
+                a: function(newVal, oldVal){
+                    console.log(newVal, oldVal);
+                }
+            }
+        })
+
+        // $.get(' https://cnodejs.org/api/v1/topics', {page: 1, limit: 10}, function(res){
+        //     console.log(res);
+        //     vm.dataset = res.data;
+        // })
+    </script>
+</body>
+</html>

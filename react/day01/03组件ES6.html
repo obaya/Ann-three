@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <script src="../reactjs/react.js"></script>
+    <script src="../reactjs/react-dom.js"></script>
+    <script src="../reactjs/browser.min.js"></script>
+</head>
+<body>
+    <div id="div"></div>
+    <script type="text/babel">
+        class Component1 extends React.Component{
+            defaultProps = {
+                age:30
+            }
+            render(){
+                return (
+                    <div>
+                        <h1>age:{this.props.age}</h1>
+                        <h1>gender:{this.props.gender}</h1>
+                    </div>
+                )
+            }
+        }
+        ReactDOM.render(<Component1  gender="girl"/>,document.getElementById('div'))
+
+    </script>
+</body>
+</html>

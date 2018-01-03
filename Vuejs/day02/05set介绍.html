@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>$set</title>
+    <!-- 添加属性名和属性值 -->
+    <script src="../libs/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <input type="button" value="set" @click="click" />
+        <p>{{dataset.username}}</p>
+    </div>
+    <script type="text/javascript">
+        var vm = new Vue({
+            el:"#app",
+            data:{
+                dataset:{}
+            },
+            methods:{
+                click:function(){
+                    // 直接赋值
+                    // this.dataset.username = "hahaha";
+                    this.$set(this.dataset,'username','xixixi')
+                }
+            }
+        })
+    </script>
+</body>
+</html>

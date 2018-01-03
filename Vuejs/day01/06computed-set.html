@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>computed-set</title>
+    <script src="../libs/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <p>{{fullname}}</p>
+        <p>{{fullname}}</p>
+        <p>{{fullname}}</p>
+        <input type="button" value="changename" @click="changename('Vue')" />
+    </div>
+    <script type="text/javascript">
+        var vm = new Vue({
+            el : '#app',
+            data : {
+                firstname:'yang',
+                lastname:'shan',
+                newname:''
+            },
+            computed : {
+                fullname : {
+                    get : function(){
+                        return this.firstname + '.' + this.lastname
+                    },
+                    set : function(newValue){
+                        this.firstname = newValue
+                    }
+                }
+            },
+            methods : {
+                changename : function(txt){
+                    console.log(txt)
+                    this.newname = txt;
+                }
+            }
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <script src="../libs/vue.js"></script>
+    <style type="text/css">
+        .fade-enter{opacity:0;}
+        .fade-enter-active{transition:all 0.001s;}
+        .fade-leave-active{opacity:0;transition:all 0.001s;}
+    </style>
+</head>
+<body>
+    <div id="app">
+        <fieldset>
+            <legend>mode=in-out</legend>
+            <input type="button" :value="red? 'green' : 'red'"  @click="red=!red"/><br />
+            <transition name="fade" mode="in-out">
+                <img src="imgs/red.jpg" v-if="red" key="red"/>
+                <img src="imgs/green.jpg" v-else="green" key="green"/>
+            </transition>
+        </fieldset>
+    </div>  
+    <script type="text/javascript">
+        var vm = new Vue({
+            el:'#app',
+            data:{
+                red:true,
+                flag:1
+            }
+        })
+    </script>
+</body>
+</html>

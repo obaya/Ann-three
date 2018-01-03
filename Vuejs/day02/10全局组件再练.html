@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <script src="../libs/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <global></global>
+    </div>
+    <script type="text/javascript">
+        Vue.component('global',{
+            template:'<p>全局组件</p>'
+        })
+        var vm = new Vue({
+            el:'#app'
+        })
+    </script>
+</body>
+</html>

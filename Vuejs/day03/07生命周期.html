@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <script src="../libs/vue.js"></script>
+    <script src="../libs/jquery-3.2.1.min.js"></script>
+
+
+</head>
+<body>
+    <div id="app">
+        
+    </div>
+    <script type="text/javascript">
+        var vm = new Vue({
+            el:'#app',
+            template:'<h1>{{name}}</h1>',
+            data:{
+                name:'ann',
+                age:22
+            },
+            beforeCreate:function(){
+                console.log($('h1').length);
+            },
+            created:function(){
+                console.log($('h1').length);
+            },
+            beforeMount:function(){
+                console.log($('h1').length);
+            },
+            mounted:function(){
+                console.log($('h1').length);
+            },
+            beforeUpdate:function(){
+                console.log('beforeUpdate');
+            },
+            updated:function(){
+                console.log('updated');
+            },
+            // components:{
+            //     'component1':{
+            //         template:'<h1>Component1</h1>'
+            //     }
+            // }
+        })
+    </script>
+</body>
+</html>

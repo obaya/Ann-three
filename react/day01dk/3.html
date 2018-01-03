@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../../../../libs/react/react.js"></script>
+    <script src="../../../../libs/react/react-dom.js"></script>
+    <script src="../../../../libs/react/browser.min.js"></script>    
+</head>
+<body>
+    <div id="div1"></div>
+
+    <script type="text/babel">
+        //React 属性可分两种：一种是只读(props)，另一种是可读可写(state)
+
+        var Component1 = React.createClass({
+            getInitialState: function(){
+                return {
+                    username: 'admin',
+                    password: 'admin'
+                }
+            },
+            componentEvent: function(){
+                console.log(this);
+                // $.post('', this.state)
+            },
+            usernameChange: function(event){
+                this.setState({username: event.target.value});
+            },
+            render: function(){
+                return (
+                    <div>
+                        <p>{this.state.username}</p>
+                        <input type="text" name="username" ref="username" value={this.state.username} onChange={this.usernameChange}/>
+                        <input type="password" name="password" ref="password"/>
+                        <input type="button" value="submit" onClick={this.componentEvent}/>
+                    </div>
+                )
+            }
+        })
+
+        ReactDOM.render(<Component1></Component1>, document.getElementById('div1'));
+        
+    </script>
+</body>
+</html>

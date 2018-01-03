@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>index</title>
+    <script src="./libs/jquery-2.1.1.min.js"></script>
+    <script src="./libs/jquery.form.js"></script>
+</head>
+<body>
+    <h1>index</h1>
+    <form id="form"  accept-charset="utf-8">
+        <input type="file" name="myfile" />
+    </form>
+    <input type="button" value="提交" id="btn"/>
+    <!-- 要将表单提交到后台，要在后台开启路由，用到的是post -->
+
+
+
+
+    <script type="text/javascript">
+        $(function(){
+            // jquery是如何提交file的？ajaxsubmit是jquery封装好的异步提交form的方法
+            $('#btn').on('click',function(){
+                $('#form').ajaxSubmit({
+                    url:'upload',
+                    type:"post",
+                    success:function(response){
+                        // 提交成功之后后台返回过来的是什么
+                        console.log(response);
+                    }
+                })
+            })
+        })
+        
+
+    </script>
+</body>
+</html>

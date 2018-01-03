@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <script src="jquery-2.1.1.min.js"></script>
+</head>
+<body>
+    <h3>websocket</h3>
+    <input type="button" id="online" value="上线"/>
+    <input type="button" id="offline"  value="下线"/>
+    <input type="text" id="message" />
+    <input type="button" id="send"  value="发送"/>
+    <ul>
+        
+    </ul>
+
+    <script type="text/javascript">
+        if(!WebSocket){
+            $('h3').text('浏览器不支持WebSocket');
+            // return false;
+        }
+        // 连接socket服务器
+        var socket;
+        // 上线
+        $('#online').click(function(){
+            socket = new WebSocket('ws://localhost:666');
+            // onopen:网络连接建立时
+            socket.onopen = function(){
+                $('h3').text('服务已连接');
+
+            };
+            // onclose：服务断开
+            socket.onclose = function(){
+                $('h3').text('服务器已断开');
+
+            };
+
+            // onmessage:监听服务端发送过来的消息
+            socket.onmessage = function(msg){
+                $('<li></li>').html(msg.data).appendTo('ul');
+                
+            }
+        })
+
+
+        // 下线
+        $('#offline').click(function(){
+            socket.close();
+            $('h3').text('你已退出聊天');
+
+            console.log('why')
+        })
+        
+        // 将消息发送给服务器
+        $('#send').click(function(){
+            if(socket){
+                socket.send($('#message').val());
+            }
+        })
+
+
+        
+
+    </script>
+</body>
+</html>
